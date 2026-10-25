@@ -27,7 +27,7 @@ public abstract class ScoredRouteStrategy implements RouteStrategy {
                     + (routes.isEmpty() ? "Route list is empty." : String.join("; ", rejected)));
         }
 
-        Route best = valid.getFirst();
+        Route best = valid.get(0);
         double bestScore = score(best, request, valid);
         for (Route route : valid) {
             double candidateScore = score(route, request, valid);
