@@ -8,7 +8,8 @@ public class Main {
         DeliveryRequest request = new DeliveryRequest(DeliveryPriority.STANDARD, 10000, 90, false);
         List<RouteStrategy> strategies = List.of(new FastestRouteStrategy(),
                 new CheapestRouteStrategy(), new EcoFriendlyRouteStrategy(),
-                new BalancedRouteStrategy(0.4, 0.3, 0.1, 0.2));
+                new BalancedRouteStrategy(0.4, 0.3, 0.1, 0.2),
+                new DistanceFirstRouteStrategy());
 
         System.out.println("COMPARISON AND RUNTIME SWITCHING (same request and planner)");
         RoutePlanner planner = new RoutePlanner(strategies.get(0));
