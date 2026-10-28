@@ -1,0 +1,62 @@
+COMPARISON AND RUNTIME SWITCHING (same request and planner)
+Fastest -> B
+Reason: score = estimated minutes + traffic penalty; minimum score 24.0000. Time: 22 + 2 traffic = 24 min; cost: 4000.00 + 15.0 km * 100 + 0 priority = 5500.00; distance: 15.0 km; CO2: 5.00 kg. Ties keep the first route.
+Rejected G: route unavailable
+Cheapest -> H
+Reason: score = base cost + distance * 100 + priority surcharge; minimum score 2200.0000. Time: 55 + 10 traffic = 65 min; cost: 800.00 + 14.0 km * 100 + 0 priority = 2200.00; distance: 14.0 km; CO2: 2.00 kg. Ties keep the first route.
+Rejected G: route unavailable
+Eco Friendly -> C
+Reason: score = CO2 * 0.8 + distance * 0.2; minimum score 2.4000. Time: 45 + 0 traffic = 45 min; cost: 2000.00 + 10.0 km * 100 + 0 priority = 3000.00; distance: 10.0 km; CO2: 0.50 kg. Ties keep the first route.
+Rejected G: route unavailable
+Balanced -> E
+Reason: score = 0.4 * normalized time + 0.3 * normalized cost + 0.1 * normalized distance + 0.2 * normalized CO2 (each value / feasible maximum); minimum score 0.4708. Time: 35 + 3 traffic = 38 min; cost: 2200.00 + 8.0 km * 100 + 0 priority = 3000.00; distance: 8.0 km; CO2: 1.00 kg. Ties keep the first route.
+Rejected G: route unavailable
+Distance First -> E
+Reason: score = distance in km; minimum score 8.0000. Time: 35 + 3 traffic = 38 min; cost: 2200.00 + 8.0 km * 100 + 0 priority = 3000.00; distance: 8.0 km; CO2: 1.00 kg. Ties keep the first route.
+Rejected G: route unavailable
+
+AUTOMATIC SELECTION
+Request: DeliveryRequest[priority=URGENT, maxBudget=10000.0, maxDeliveryMinutes=30, ecoPreferred=false]
+Fastest -> B
+Reason: score = estimated minutes + traffic penalty; minimum score 24.0000. Time: 22 + 2 traffic = 24 min; cost: 4000.00 + 15.0 km * 100 + 500 priority = 6000.00; distance: 15.0 km; CO2: 5.00 kg. Ties keep the first route.
+Rejected A: deadline exceeded
+Rejected C: deadline exceeded
+Rejected D: deadline exceeded
+Rejected E: deadline exceeded
+Rejected F: deadline exceeded
+Rejected G: route unavailable
+Rejected H: deadline exceeded
+Request: DeliveryRequest[priority=ECONOMY, maxBudget=2500.0, maxDeliveryMinutes=90, ecoPreferred=false]
+Cheapest -> H
+Reason: score = base cost + distance * 100 + priority surcharge; minimum score 2200.0000. Time: 55 + 10 traffic = 65 min; cost: 800.00 + 14.0 km * 100 + 0 priority = 2200.00; distance: 14.0 km; CO2: 2.00 kg. Ties keep the first route.
+Rejected A: budget exceeded
+Rejected B: budget exceeded
+Rejected C: budget exceeded
+Rejected E: budget exceeded
+Rejected F: budget exceeded
+Rejected G: route unavailable
+Request: DeliveryRequest[priority=ECO, maxBudget=4000.0, maxDeliveryMinutes=60, ecoPreferred=true]
+Eco Friendly -> C
+Reason: score = CO2 * 0.8 + distance * 0.2; minimum score 2.4000. Time: 45 + 0 traffic = 45 min; cost: 2000.00 + 10.0 km * 100 + 0 priority = 3000.00; distance: 10.0 km; CO2: 0.50 kg. Ties keep the first route.
+Rejected A: budget exceeded
+Rejected B: budget exceeded
+Rejected F: budget exceeded
+Rejected G: route unavailable
+Rejected H: deadline exceeded
+Request: DeliveryRequest[priority=STANDARD, maxBudget=10000.0, maxDeliveryMinutes=90, ecoPreferred=false]
+Balanced -> E
+Reason: score = 0.4 * normalized time + 0.3 * normalized cost + 0.1 * normalized distance + 0.2 * normalized CO2 (each value / feasible maximum); minimum score 0.4708. Time: 35 + 3 traffic = 38 min; cost: 2200.00 + 8.0 km * 100 + 0 priority = 3000.00; distance: 8.0 km; CO2: 1.00 kg. Ties keep the first route.
+Rejected G: route unavailable
+Request: DeliveryRequest[priority=URGENT, maxBudget=5500.0, maxDeliveryMinutes=40, ecoPreferred=false]
+Fastest -> F
+Reason: score = estimated minutes + traffic penalty; minimum score 32.0000. Time: 28 + 4 traffic = 32 min; cost: 2500.00 + 20.0 km * 100 + 500 priority = 5000.00; distance: 20.0 km; CO2: 6.00 kg. Ties keep the first route.
+Rejected B: budget exceeded
+Rejected C: deadline exceeded
+Rejected D: deadline exceeded
+Rejected G: route unavailable
+Rejected H: deadline exceeded
+
+FAILURE SCENARIOS
+No suitable route. Route list is empty.
+No suitable route. A: budget exceeded, deadline exceeded; B: budget exceeded, deadline exceeded; C: budget exceeded, deadline exceeded; D: budget exceeded, deadline exceeded; E: budget exceeded, deadline exceeded; F: budget exceeded, deadline exceeded; G: route unavailable, budget exceeded, deadline exceeded; H: budget exceeded, deadline exceeded
+Weights must be finite, nonnegative and sum to 1
